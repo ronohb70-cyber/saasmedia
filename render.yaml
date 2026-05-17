@@ -9,6 +9,8 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 20.18.0
+      - key: NEST_API_URL
+        value: "https://social-api-azcv.onrender.com/api"
       - key: NEXT_PUBLIC_API_URL
         value: "https://social-api-azcv.onrender.com/api"
 
