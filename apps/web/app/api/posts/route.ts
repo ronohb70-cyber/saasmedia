@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const API_URL = process.env.NEST_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? 'https://social-api-azcv.onrender.com/api';
+const API_URL = process.env.NEST_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? 'https://social-api-9498.onrender.com/api';
 
 export async function GET(request: Request) {
   const token = request.headers.get('authorization');

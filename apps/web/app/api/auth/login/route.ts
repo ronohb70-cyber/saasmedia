@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const API_URL = process.env.NEST_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? 'https://social-api-azcv.onrender.com/api';
+const API_URL = process.env.NEST_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? 'https://social-api-9498.onrender.com/api';
 
 export async function POST(request: Request) {
   const body = await request.json();
