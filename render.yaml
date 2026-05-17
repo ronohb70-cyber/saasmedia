@@ -10,12 +10,9 @@ services:
       - key: NODE_VERSION
         value: 18.18.0
       - key: NEXT_PUBLIC_API_URL
-        fromService:
-          type: web
-          name: social-api
-          property: url
+        value: "http://social-api:3001/api"
 
-  # ── NestJS API Server ───────────────────────────────────────────────────
+  # ── NestJS API Server (Handles API & Background Queue Workers Internally!) ─
   - type: web
     name: social-api
     env: node
@@ -31,49 +28,11 @@ services:
         fromDatabase:
           name: social-db
           property: connectionString
-      - key: REDIS_HOST
-        fromService:
-          type: redis
-          name: social-redis
-          property: host
-      - key: REDIS_PORT
-        fromService:
-          type: redis
-          name: social-redis
-          property: port
+      - key: REDIS_URL
+        sync: false
+        placeholder: "redis://default:your-password@your-upstash-redis.upstash.io:6379"
       - key: JWT_SECRET
         generateValue: true
-
-  # ── NestJS Background Worker ────────────────────────────────────────────
-  - type: worker
-    name: social-worker
-    env: node
-    plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm run start:prod --filter=worker
-    envVars:
-      - key: NODE_VERSION
-        value: 18.18.0
-      - key: DATABASE_URL
-        fromDatabase:
-          name: social-db
-          property: connectionString
-      - key: REDIS_HOST
-        fromService:
-          type: redis
-          name: social-redis
-          property: host
-      - key: REDIS_PORT
-        fromService:
-          type: redis
-          name: social-redis
-          property: port
-
-  # ── Redis Instance (For BullMQ) ─────────────────────────────────────────
-  - type: redis
-    name: social-redis
-    plan: free
-    ipAllowList: [] # Allow internal access only
 
 databases:
   - name: social-db
