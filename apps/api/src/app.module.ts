@@ -9,12 +9,19 @@ import { BullModule } from '@nestjs/bullmq';
 // Helper to parse Redis URL for ioredis compatibility
 const getRedisConnection = () => {
   const urlString = process.env.REDIS_URL;
+  console.log('--- REDIS CONNECTION DIAGNOSTICS ---');
+  console.log('REDIS_URL environment variable exists:', !!urlString);
   if (urlString) {
     try {
       const parsed = new URL(urlString);
+      const host = parsed.hostname;
+      const port = parseInt(parsed.port || '6379', 10);
+      console.log('Parsed Redis Host:', host);
+      console.log('Parsed Redis Port:', port);
+      console.log('Parsed Redis Protocol:', parsed.protocol);
       return {
-        host: parsed.hostname,
-        port: parseInt(parsed.port || '6379', 10),
+        host,
+        port,
         username: parsed.username ? decodeURIComponent(parsed.username) : undefined,
         password: parsed.password ? decodeURIComponent(parsed.password) : undefined,
         tls: parsed.protocol === 'rediss:' ? {} : undefined,
@@ -23,6 +30,7 @@ const getRedisConnection = () => {
       console.error('Failed to parse REDIS_URL, falling back to defaults', e);
     }
   }
+  console.log('Falling back to localhost:6379 since REDIS_URL is missing or invalid');
   return {
     host: process.env.REDIS_HOST ?? 'localhost',
     port: parseInt(process.env.REDIS_PORT ?? '6379', 10),
