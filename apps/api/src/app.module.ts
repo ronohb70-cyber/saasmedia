@@ -10,10 +10,10 @@ import { BullModule } from '@nestjs/bullmq';
   imports: [
     // BullMQ — shared Redis connection for all queues
     BullModule.forRoot({
-      connection: {
+      connection: (process.env.REDIS_URL || {
         host: process.env.REDIS_HOST ?? 'localhost',
         port: parseInt(process.env.REDIS_PORT ?? '6379', 10),
-      },
+      }) as any,
     }),
     AuthModule,
     SocialModule,

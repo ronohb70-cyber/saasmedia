@@ -3,6 +3,7 @@ import { BullModule } from '@nestjs/bullmq';
 import { ScheduleService } from './schedule.service';
 import { PostsController } from './posts.controller';
 import { AuthModule } from '../auth/auth.module';
+import { PostProcessor } from './post.processor';
 
 @Module({
   imports: [
@@ -10,7 +11,7 @@ import { AuthModule } from '../auth/auth.module';
     AuthModule, // Import so AuthGuard is available
   ],
   controllers: [PostsController],
-  providers: [ScheduleService],
+  providers: [ScheduleService, PostProcessor],
   exports: [ScheduleService],
 })
 export class ScheduleModule {}
