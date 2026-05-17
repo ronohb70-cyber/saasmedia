@@ -8,7 +8,7 @@ import { BullModule } from '@nestjs/bullmq';
 
 // Helper to parse Redis URL for ioredis compatibility
 const getRedisConnection = () => {
-  const urlString = process.env.REDIS_URL;
+  const urlString = process.env.REDIS_URL || "rediss://default:gQAAAAAAAfQJAAIgcDEzOTJiMGU0ZDFmNzU0ZTZlYTYxZTI4Nzk4NjE4OWJiNw@faithful-seahorse-128009.upstash.io:6379";
   console.log('--- REDIS CONNECTION DIAGNOSTICS ---');
   console.log('REDIS_URL environment variable exists:', !!urlString);
   if (urlString) {
