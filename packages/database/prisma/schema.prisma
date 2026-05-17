@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id             String          @id @default(cuid())
+  name           String
+  slug           String          @unique
+  users          User[]
+  socialAccounts SocialAccount[]
+  posts          Post[]
+  subscription   Subscription?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model User {
+  id             String       @id @default(cuid())
+  email          String       @unique
+  name           String?
+  role           Role         @default(MEMBER)
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model SocialAccount {
+  id             String       @id @default(cuid())
+  platform       Platform     // FACEBOOK, INSTAGRAM, X, etc.
+  accessToken    String       // ENCRYPTED
+  refreshToken   String?      // ENCRYPTED
+  expiresAt      DateTime?
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([platform, organizationId])
+}
+
+model Post {
+  id             String       @id @default(cuid())
+  content        String
+  scheduledAt    DateTime
+  status         PostStatus   @default(SCHEDULED)
+  platforms      Platform[]
+  mediaUrls      String[]
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model Subscription {
+  id               String       @id @default(cuid())
+  stripeCustomerId String       @unique
+  stripePriceId    String
+  status           String
+  organizationId   String       @unique
+  organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+enum Role { 
+  ADMIN 
+  MEMBER 
+}
+
+enum Platform { 
+  FACEBOOK 
+  INSTAGRAM 
+  LINKEDIN 
+  X 
+  TIKTOK 
+  YOUTUBE 
+}
+
+enum PostStatus { 
+  DRAFT 
+  SCHEDULED 
+  PUBLISHING
+  PUBLISHED 
+  FAILED 
+}

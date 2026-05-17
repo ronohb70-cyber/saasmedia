@@ -1,0 +1,210 @@
+/* Connected Accounts Page Styles */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--foreground);
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  border-radius: 99px;
+  padding: 0.45rem 1rem;
+  font-size: 0.825rem;
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.badgeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Platform cards grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.card {
+  border-radius: 1.1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--glass-border) !important;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4) !important;
+}
+
+.cardConnected {
+  border-color: rgba(74, 222, 128, 0.2) !important;
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.platformIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+/* Status pill */
+.statusPill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 99px;
+}
+
+.statusConnected {
+  background: rgba(74, 222, 128, 0.12);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.25);
+}
+
+.statusConnecting {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+.statusDisconnected {
+  background: rgba(113, 113, 122, 0.15);
+  color: var(--muted-foreground);
+  border: 1px solid var(--border);
+}
+
+/* Platform info */
+.platformInfo {
+  flex: 1;
+}
+
+.platformName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.2rem;
+}
+
+.platformDesc {
+  font-size: 0.78rem;
+  color: var(--muted-foreground);
+}
+
+.handle {
+  font-size: 0.82rem;
+  color: #a78bfa;
+  font-weight: 500;
+  margin-top: 0.3rem;
+}
+
+/* Actions */
+.cardActions {
+  margin-top: auto;
+}
+
+.connectBtn {
+  width: 100%;
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+}
+
+.disconnectBtn {
+  width: 100%;
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+  background: rgba(127, 29, 29, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  transition: all 0.2s;
+}
+
+.disconnectBtn:hover {
+  background: rgba(127, 29, 29, 0.35);
+}
+
+/* Info box */
+.infoBox {
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.infoIcon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.infoTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.3rem;
+}
+
+.infoText {
+  font-size: 0.825rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}

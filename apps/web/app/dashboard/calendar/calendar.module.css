@@ -1,0 +1,180 @@
+/* Content Calendar Page Styles */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--foreground);
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.navButtons { display: flex; gap: 0.5rem; align-items: center; }
+
+.navBtn {
+  background: var(--secondary);
+  color: var(--muted-foreground);
+  border: 1px solid var(--border);
+  font-size: 0.82rem;
+  padding: 0.45rem 0.85rem;
+}
+
+.todayBtn {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  font-size: 0.82rem;
+  padding: 0.45rem 0.85rem;
+}
+
+/* Calendar grid */
+.calendarWrap {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: 56px repeat(7, 1fr);
+  overflow-y: auto;
+  max-height: 560px;
+}
+
+.calendarGrid::-webkit-scrollbar { width: 4px; }
+.calendarGrid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+/* Day headers */
+.timeGutter {
+  background: rgba(24, 24, 27, 0.8);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.dayHeader {
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  background: rgba(24, 24, 27, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.dayHeader.today {
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.dayName {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dayNum {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #a78bfa;
+  margin-top: 0.1rem;
+  min-height: 1.2rem;
+}
+
+/* Time cells */
+.timeLabel {
+  font-size: 0.68rem;
+  color: var(--muted-foreground);
+  text-align: right;
+  padding: 0.4rem 0.5rem 0 0;
+  border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+  height: 52px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.cell {
+  border-left: 1px solid rgba(39, 39, 42, 0.5);
+  border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+  height: 52px;
+  padding: 0.2rem;
+  position: relative;
+}
+
+.todayCol {
+  background: rgba(139, 92, 246, 0.03);
+}
+
+/* Events */
+.event {
+  background: rgba(39, 39, 42, 0.9);
+  border-left: 3px solid;
+  border-radius: 0 5px 5px 0;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  height: calc(100% - 4px);
+  overflow: hidden;
+}
+
+.event:hover { opacity: 0.8; }
+
+.eventIcon { flex-shrink: 0; font-size: 0.8rem; }
+
+.eventContent {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--foreground);
+  font-size: 0.68rem;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
