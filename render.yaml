@@ -10,7 +10,7 @@ services:
       - key: NODE_VERSION
         value: 20.18.0
       - key: NEXT_PUBLIC_API_URL
-        value: "http://social-api:3001/api"
+        value: "https://social-api-azcv.onrender.com/api"
 
   # ── NestJS API Server (Handles API & Background Queue Workers Internally!) ─
   - type: web
@@ -24,6 +24,8 @@ services:
         value: 20.18.0
       - key: PORT
         value: 3001
+      - key: FRONTEND_URL
+        value: "https://social-web-azcv.onrender.com"
       - key: DATABASE_URL
         fromDatabase:
           name: social-db
