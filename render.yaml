@@ -10,7 +10,7 @@ services:
       - key: NODE_VERSION
         value: 20.18.0
       - key: NEXT_PUBLIC_API_URL
-        value: "http://social-api:3001/api"
+        value: "http://social-api/api"
 
   # ── NestJS API Server (Handles API & Background Queue Workers Internally!) ─
   - type: web
