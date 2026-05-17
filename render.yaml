@@ -5,7 +5,7 @@ services:
     env: node
     plan: free
     buildCommand: npm install && npm run build
-    startCommand: npm run start --filter=web
+    startCommand: npx turbo run start --filter=web
     envVars:
       - key: NODE_VERSION
         value: 20.18.0
@@ -18,7 +18,7 @@ services:
     env: node
     plan: free
     buildCommand: npm install && npm run build && npx prisma db push --schema=packages/database/prisma/schema.prisma
-    startCommand: npm run start:prod --filter=api
+    startCommand: npx turbo run start:prod --filter=api
     envVars:
       - key: NODE_VERSION
         value: 20.18.0
